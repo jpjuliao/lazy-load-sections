@@ -22,40 +22,40 @@ if (function_exists('wp_script_is')) {
     function lazy_load_section_script()
     {
 ?>
-      <script type="text/javascript" id="lazy-load-section-script">
-        jQuery(function($) {
-          /**
-           * Removes the specified class from the element when it appears on the screen.
-           * @param {string} className - The class name to remove from the element.
-           */
-          function removeClassOnScroll(className) {
-            $(window).scroll(function() {
-              // Get the top and bottom positions of the viewport
-              var windowHeight = $(window).height();
-              var windowTopPosition = $(window).scrollTop();
-              var windowBottomPosition = (windowTopPosition + windowHeight);
+    <script type="text/javascript" id="lazy-load-section-script">
+      jQuery(function($) {
+        /**
+         * Removes the specified class from the element when it appears on the screen.
+         * @param {string} className - The class name to remove from the element.
+         */
+        function removeClassOnScroll(className) {
+          $(window).scroll(function() {
+            // Get the top and bottom positions of the viewport
+            var windowHeight = $(window).height();
+            var windowTopPosition = $(window).scrollTop();
+            var windowBottomPosition = (windowTopPosition + windowHeight);
 
-              // Get the top and bottom positions of the element
-              var elementOffset = $('.' + className).offset();
-              if (typeof elementOffset === 'undefined') return;
+            // Get the top and bottom positions of the element
+            var elementOffset = $('.' + className).offset();
+            if (typeof elementOffset === 'undefined') return;
 
-              var elementTopPosition = elementOffset.top;
-              var elementBottomPosition = (elementTopPosition + $('.' + className).outerHeight());
+            var elementTopPosition = elementOffset.top;
+            var elementBottomPosition = (elementTopPosition + $('.' + className).outerHeight());
 
-              // Check if the element is within the viewport
-              if ((elementBottomPosition >= windowTopPosition) && (elementTopPosition <= windowBottomPosition)) {
-                // Remove the class when it appears on the screen
-                $('.' + className).removeClass(className);
-              }
-            });
-          }
-
-          // Call the function with the class name to be removed on scroll
-          $(document).ready(function() {
-            removeClassOnScroll('lazy-load-on');
+            // Check if the element is within the viewport
+            if ((elementBottomPosition >= windowTopPosition) && (elementTopPosition <= windowBottomPosition)) {
+              // Remove the class when it appears on the screen
+              $('.' + className).removeClass(className);
+            }
           });
+        }
+
+        // Call the function with the class name to be removed on scroll
+        $(document).ready(function() {
+          removeClassOnScroll('lazy-load-on');
         });
-      </script>
+      });
+    </script>
   <?php
     }
 
@@ -71,7 +71,7 @@ function lazy_load_section_style()
 {
   ?>
   <style id="lazy-load-section-style">
-    .lazy-load-on {
+    .js .lazy-load-on {
       display: none;
     }
   </style>
